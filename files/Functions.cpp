@@ -10,7 +10,7 @@
    vector<char*>unionofarray(vector<char*> v1,vector<char*> v2);
    vector<float> frequencyVector(vector<char*>,tree v);
    float EuclideanDistance(vector<float> v1,vector<float> v2);
-   void AdjacencyMatrix(vector<tree> fileList);
+   vector< vector<float> > AdjacencyMatrixs(vector<tree> fileList);
 
 
 
@@ -111,7 +111,7 @@ vector<float> frequencyVector(vector<char*> word,tree v){
 
 }
 
-void AdjacencyMatrix(vector<tree> fileList){
+vector< vector<float> > AdjacencyMatrixs(vector<tree> fileList){
 
      int n = fileList.size();
      Graph a(n);
@@ -136,6 +136,7 @@ void AdjacencyMatrix(vector<tree> fileList){
      //cout<<dis<<" ";
      d.push_back(dis);
      }
+
      distance.push_back(d);
      n--;
      }
@@ -152,4 +153,5 @@ void AdjacencyMatrix(vector<tree> fileList){
      }
 
      a.print();
+     return distance;
 }

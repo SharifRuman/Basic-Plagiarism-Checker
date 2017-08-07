@@ -4,31 +4,113 @@
 #include<cstdlib>
 #include<vector>
 #include "tree.h"
-#include"Functions.h"
+#include "Functions.h"
 using namespace std;
 
 
 
 tree readFromFile(string fileName);
 tree  wordsFromFile(string fileName);
+vector< vector<float> > AdjacencyMatrixs(vector<tree> fileList);
 
 
 
-
-
-/*int main(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
+    int n=argc;
+    string a[n];
     vector<tree> fileList;
-    for(int i=0;i<argc;i++){
+    for(int i=1;i<argc;i++){
 
     fileList.push_back(readFromFile(argv[i]));
+    a[i-1]=argv[i];
 
     }
+vector< vector<float> > distance;
+distance= AdjacencyMatrixs(fileList);
 
-   AdjacencyMatrix(fileList);
+
+cout<<"<!doctype html>"<<endl;
+cout<<"<html>"<<endl;
+cout<<"<head>"<<endl;
+cout<<"<title>Visual Rendering of the Graph</title>\n<script type = ";
+cout<<'"';
+cout<<"text/javascript";
+cout<<'"';
+cout<<"src = ";
+cout<<'"';
+cout<<"http://visjs.org/dist/vis.js";
+cout<<'"';
+cout<<"></script>\n<link href = ";
+cout<<'"';
+cout<<"http://visjs.org/dist/vis-network.min.css";
+cout<<'"';
+cout<<" rel = ";
+cout<<'"';
+cout<<"stylesheet";
+cout<<'"';
+cout<<" type = ";
+cout<<'"';
+cout<<"text/css";
+cout<<'"'<<"/>"<<endl;
+cout<<"<style type = ";
+cout<<'"';
+cout<<"text/css";
+cout<<'"'<<">"<<endl;
+cout<<"#mynetwork{"<<endl;
+cout<<"width: 600px"<<endl;
+cout<<"height: 400px"<<endl;
+cout<<"border: 1px solid lightgray"<<endl;
+cout<<"}"<<endl;
+cout<<"</style>"<<endl;
+cout<<"</head>"<<endl;
+cout<<"<body>"<<endl;
+cout<<"<p>"<<endl<<"A simple network with file nodes and their distances."<<endl<<"</p>"<<endl;
+cout<<"<div id = ";
+cout<<'"';
+cout<<"mynetwork";
+cout<<'"'<<"></div>"<<endl;
+cout<<"<script type = "<<'"'<<"text/javascript"<<'"'<<">"<<endl;
+cout<<"var nodes = new vis.DataSet(["<<endl;
+for(int i=0;i<n-1;i++){
+cout<<"{id: "<<i+1<<", label : "<<a[i]<<" },"<<endl;
+}
+
+
+
+
+cout<<"]);"<<endl;
+cout<<"var edges = new vis.DataSet(["<<endl;
+
+
+int k=0;
+     for(vector< vector<float> >::const_iterator j = distance.begin(); j != distance.end(); ++j){
+     int l=0+k;
+     for(vector<float>::const_iterator i = (*j).begin(); i != (*j).end(); ++i){
+     cout<< "{from : " << k+1 << ", label : " << (*i) << ", to : " << l+1 << "}," <<endl;
+     l++;
+     }
+     k++;
+     }
+
+
+cout<<"]);"<<endl;
+cout<<"var container = document.getElementById('mynetwork');"<<cout;
+cout<<"var data = {"<<endl;
+cout<<"nodes: nodes,"<<endl;
+cout<<"edges : edges"<<endl;
+cout<<"};"<<endl;
+cout<<"var options = {};"<<endl;
+cout<<"var network = new vis.Network(container, data, options);"<<endl;
+cout<<"</script>"<<endl;
+cout<<"</body>"<<endl;
+cout<<"</html>"<<endl;
+
+
+
 
     return 0;
-}*/
+}
 
 
 // read file
@@ -98,9 +180,7 @@ tree wordsFromFile(string fileName) {
 
 
 
-
-
-int main()
+/*int main()
 {
     string fileName;
     int n;
@@ -108,18 +188,98 @@ int main()
     cout << "Enter number of file:";
     cin>>n;
     cout<<""<<endl;
+    string a[n];
 
     for(int i=0;i<n;i++){
 
 	cout << "Enter your file name:";
 
 	cin >> fileName;
+	a[i]=fileName;
 
     fileList.push_back(readFromFile(fileName));
 
     }
 
-   AdjacencyMatrix(fileList);
+vector< vector<float> > distance;
+distance= AdjacencyMatrixs(fileList);
+
+
+cout<<"<!doctype html>"<<endl;
+cout<<"<html>"<<endl;
+cout<<"<head>"<<endl;
+cout<<"<title>Visual Rendering of the Graph</title>\n<script type = ";
+cout<<'"';
+cout<<"text/javascript";
+cout<<'"';
+cout<<"src = ";
+cout<<'"';
+cout<<"http://visjs.org/dist/vis.js";
+cout<<'"';
+cout<<"></script>\n<link href = ";
+cout<<'"';
+cout<<"http://visjs.org/dist/vis-network.min.css";
+cout<<'"';
+cout<<" rel = ";
+cout<<'"';
+cout<<"stylesheet";
+cout<<'"';
+cout<<" type = ";
+cout<<'"';
+cout<<"text/css";
+cout<<'"'<<"/>"<<endl;
+cout<<"<style type = ";
+cout<<'"';
+cout<<"text/css";
+cout<<'"'<<">"<<endl;
+cout<<"#mynetwork{"<<endl;
+cout<<"width: 600px"<<endl;
+cout<<"height: 400px"<<endl;
+cout<<"border: 1px solid lightgray"<<endl;
+cout<<"}"<<endl;
+cout<<"</style>"<<endl;
+cout<<"</head>"<<endl;
+cout<<"<body>"<<endl;
+cout<<"<p>"<<endl<<"A simple network with file nodes and their distances."<<endl<<"</p>"<<endl;
+cout<<"<div id = ";
+cout<<'"';
+cout<<"mynetwork";
+cout<<'"'<<"></div>"<<endl;
+cout<<"<script type = "<<'"'<<"text/javascript"<<'"'<<">"<<endl;
+cout<<"var nodes = new vis.DataSet(["<<endl;
+for(int i=0;i<n;i++){
+cout<<"{id: "<<i+1<<", label : "<<a[i]<<" },"<<endl;
+}
+
+cout<<"]);"<<endl;
+cout<<"var edges = new vis.DataSet(["<<endl;
+
+
+int k=0;
+     for(vector< vector<float> >::const_iterator j = distance.begin(); j != distance.end(); ++j){
+     int l=0+k;
+     for(vector<float>::const_iterator i = (*j).begin(); i != (*j).end(); ++i){
+     cout<< "{from : " << k+1 << ", label : " << (*i) << ", to : " << l+1 << "}," <<endl;
+     l++;
+     }
+     k++;
+     }
+
+
+cout<<"]);"<<endl;
+cout<<"var container = document.getElementById('mynetwork');"<<cout;
+cout<<"var data = {"<<endl;
+cout<<"nodes: nodes,"<<endl;
+cout<<"edges : edges"<<endl;
+cout<<"};"<<endl;
+cout<<"var options = {};"<<endl;
+cout<<"var network = new vis.Network(container, data, options);"<<endl;
+cout<<"</script>"<<endl;
+cout<<"</body>"<<endl;
+cout<<"</html>"<<endl;
+
+
+
 
     return 0;
- }
+ }*/
