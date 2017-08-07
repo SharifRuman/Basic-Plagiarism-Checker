@@ -1,6 +1,0 @@
-C:\Users\Ruman\AppData\Local\Temp\ccYN1OHK.o:main.cpp:(.text+0x27b): undefined reference to `AdjacencyMatrixs(std::vector<tree, std::allocator<tree> >)'
-C:\Users\Ruman\AppData\Local\Temp\ccYN1OHK.o:main.cpp:(.text+0x128d): undefined reference to `tree::tree()'
-C:\Users\Ruman\AppData\Local\Temp\ccYN1OHK.o:main.cpp:(.text+0x1329): undefined reference to `tree::insert(char*)'
-C:/MinGW/Bin/../lib/gcc/mingw32/4.9.2/../../../../mingw32/bin/ld.exe: C:\Users\Ruman\AppData\Local\Temp\ccYN1OHK.o: bad reloc address 0xf in section `.text$_ZNSt3setIPcSt4lessIS0_ESaIS0_EED1Ev[__ZNSt3setIPcSt4lessIS0_ESaIS0_EED1Ev]'
-C:/MinGW/Bin/../lib/gcc/mingw32/4.9.2/../../../../mingw32/bin/ld.exe: final link failed: Invalid operation
-collect2.exe: error: ld returned 1 exit status
