@@ -58,9 +58,9 @@ cout<<'"';
 cout<<"text/css";
 cout<<'"'<<">"<<endl;
 cout<<"#mynetwork{"<<endl;
-cout<<"width: 600px"<<endl;
-cout<<"height: 400px"<<endl;
-cout<<"border: 1px solid lightgray"<<endl;
+cout<<"width: 600px;"<<endl;
+cout<<"height: 400px;"<<endl;
+cout<<"border: 1px solid lightgray;"<<endl;
 cout<<"}"<<endl;
 cout<<"</style>"<<endl;
 cout<<"</head>"<<endl;
@@ -73,7 +73,7 @@ cout<<'"'<<"></div>"<<endl;
 cout<<"<script type = "<<'"'<<"text/javascript"<<'"'<<">"<<endl;
 cout<<"var nodes = new vis.DataSet(["<<endl;
 for(int i=0;i<n-1;i++){
-cout<<"{id: "<<i+1<<", label : "<<a[i]<<" },"<<endl;
+cout<<"{id: "<<i+1<<", label : "<<"'"<<a[i]<<"'"<<" },"<<endl;
 }
 
 
@@ -95,7 +95,7 @@ int k=0;
 
 
 cout<<"]);"<<endl;
-cout<<"var container = document.getElementById('mynetwork');"<<cout;
+cout<<"var container = document.getElementById('mynetwork');"<<endl;
 cout<<"var data = {"<<endl;
 cout<<"nodes: nodes,"<<endl;
 cout<<"edges : edges"<<endl;
@@ -204,79 +204,82 @@ tree wordsFromFile(string fileName) {
 vector< vector<float> > distance;
 distance= AdjacencyMatrixs(fileList);
 
+ofstream myfile;
+myfile.open ("a.html");
 
-cout<<"<!doctype html>"<<endl;
-cout<<"<html>"<<endl;
-cout<<"<head>"<<endl;
-cout<<"<title>Visual Rendering of the Graph</title>\n<script type = ";
-cout<<'"';
-cout<<"text/javascript";
-cout<<'"';
-cout<<"src = ";
-cout<<'"';
-cout<<"http://visjs.org/dist/vis.js";
-cout<<'"';
-cout<<"></script>\n<link href = ";
-cout<<'"';
-cout<<"http://visjs.org/dist/vis-network.min.css";
-cout<<'"';
-cout<<" rel = ";
-cout<<'"';
-cout<<"stylesheet";
-cout<<'"';
-cout<<" type = ";
-cout<<'"';
-cout<<"text/css";
-cout<<'"'<<"/>"<<endl;
-cout<<"<style type = ";
-cout<<'"';
-cout<<"text/css";
-cout<<'"'<<">"<<endl;
-cout<<"#mynetwork{"<<endl;
-cout<<"width: 600px"<<endl;
-cout<<"height: 400px"<<endl;
-cout<<"border: 1px solid lightgray"<<endl;
-cout<<"}"<<endl;
-cout<<"</style>"<<endl;
-cout<<"</head>"<<endl;
-cout<<"<body>"<<endl;
-cout<<"<p>"<<endl<<"A simple network with file nodes and their distances."<<endl<<"</p>"<<endl;
-cout<<"<div id = ";
-cout<<'"';
-cout<<"mynetwork";
-cout<<'"'<<"></div>"<<endl;
-cout<<"<script type = "<<'"'<<"text/javascript"<<'"'<<">"<<endl;
-cout<<"var nodes = new vis.DataSet(["<<endl;
+
+myfile<<"<!doctype html>"<<endl;
+myfile<<"<html>"<<endl;
+myfile<<"<head>"<<endl;
+myfile<<"<title>Visual Rendering of the Graph</title>\n<script type = ";
+myfile<<'"';
+myfile<<"text/javascript";
+myfile<<'"';
+myfile<<"src = ";
+myfile<<'"';
+myfile<<"http://visjs.org/dist/vis.js";
+myfile<<'"';
+myfile<<"></script>\n<link href = ";
+myfile<<'"';
+myfile<<"http://visjs.org/dist/vis-network.min.css";
+myfile<<'"';
+myfile<<" rel = ";
+myfile<<'"';
+myfile<<"stylesheet";
+myfile<<'"';
+myfile<<" type = ";
+myfile<<'"';
+myfile<<"text/css";
+myfile<<'"'<<"/>"<<endl;
+myfile<<"<style type = ";
+myfile<<'"';
+myfile<<"text/css";
+myfile<<'"'<<">"<<endl;
+myfile<<"#mynetwork{"<<endl;
+myfile<<"width: 600px;"<<endl;
+myfile<<"height: 400px;"<<endl;
+myfile<<"border: 1px solid lightgray;"<<endl;
+myfile<<"}"<<endl;
+myfile<<"</style>"<<endl;
+myfile<<"</head>"<<endl;
+myfile<<"<body>"<<endl;
+myfile<<"<p>"<<endl<<"A simple network with file nodes and their distances."<<endl<<"</p>"<<endl;
+myfile<<"<div id = ";
+myfile<<'"';
+myfile<<"mynetwork";
+myfile<<'"'<<"></div>"<<endl;
+myfile<<"<script type = "<<'"'<<"text/javascript"<<'"'<<">"<<endl;
+myfile<<"var nodes = new vis.DataSet(["<<endl;
 for(int i=0;i<n;i++){
-cout<<"{id: "<<i+1<<", label : "<<a[i]<<" },"<<endl;
+myfile<<"{id: "<<i+1<<", label : "<<"'"<<a[i]<<"'"<<" },"<<endl;
 }
 
-cout<<"]);"<<endl;
-cout<<"var edges = new vis.DataSet(["<<endl;
+myfile<<"]);"<<endl;
+myfile<<"var edges = new vis.DataSet(["<<endl;
 
 
 int k=0;
      for(vector< vector<float> >::const_iterator j = distance.begin(); j != distance.end(); ++j){
      int l=0+k;
      for(vector<float>::const_iterator i = (*j).begin(); i != (*j).end(); ++i){
-     cout<< "{from : " << k+1 << ", label : " << (*i) << ", to : " << l+1 << "}," <<endl;
+     myfile<< "{from : " << k+1 << ", label : " << (*i) << ", to : " << l+1 << "}," <<endl;
      l++;
      }
      k++;
      }
 
 
-cout<<"]);"<<endl;
-cout<<"var container = document.getElementById('mynetwork');"<<cout;
-cout<<"var data = {"<<endl;
-cout<<"nodes: nodes,"<<endl;
-cout<<"edges : edges"<<endl;
-cout<<"};"<<endl;
-cout<<"var options = {};"<<endl;
-cout<<"var network = new vis.Network(container, data, options);"<<endl;
-cout<<"</script>"<<endl;
-cout<<"</body>"<<endl;
-cout<<"</html>"<<endl;
+myfile<<"]);"<<endl;
+myfile<<"var container = document.getElementById('mynetwork');"<<endl;
+myfile<<"var data = {"<<endl;
+myfile<<"nodes: nodes,"<<endl;
+myfile<<"edges : edges"<<endl;
+myfile<<"};"<<endl;
+myfile<<"var options = {};"<<endl;
+myfile<<"var network = new vis.Network(container, data, options);"<<endl;
+myfile<<"</script>"<<endl;
+myfile<<"</body>"<<endl;
+myfile<<"</html>"<<endl;
 
 
 
